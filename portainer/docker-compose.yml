@@ -1,0 +1,13 @@
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:lts
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /Volumes/512GB/portainer/:/data
+    ports:
+      - 9443:9443
+networks:
+  default:
+    name: cloudflared_network

@@ -1,0 +1,17 @@
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    restart: unless-stopped
+    ports:
+      - 13378:80
+    volumes:
+      - /Volumes/512GB/audiobookshelf/config:/config
+      - /Volumes/512GB/audiobookshelf/metadata:/metadata
+      - /Volumes/512GB/audiobookshelf/audiobooks:/audiobooks
+      - /Volumes/512GB/audiobookshelf/podcasts:/podcasts
+    environment:
+      - TZ=America/Toronto
+networks:
+  cloudflared_network:
+    external: true
