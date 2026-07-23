@@ -5,9 +5,10 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /Volumes/512GB/portainer/:/data
+      - ${UPLOAD_LOCATION}:/data
     ports:
       - 9443:9443
+      - 9000:9000
 networks:
   default:
     name: cloudflared_network
