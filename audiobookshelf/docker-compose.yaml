@@ -12,5 +12,8 @@ services:
       - ${AUDIOBOOKSHELF_DATA_LOCATION:?AUDIOBOOKSHELF_DATA_LOCATION is required}/podcasts:/podcasts
     environment:
       - TZ=${AUDIOBOOKSHELF_TZ_LOCATION:?AUDIOBOOKSHELF_TZ_LOCATION is required}
+    networks:
+      - cloudflared_network
 networks:
   cloudflared_network:
+    external: true

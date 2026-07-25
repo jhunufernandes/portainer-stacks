@@ -9,5 +9,8 @@ services:
     ports:
       - 9443:9443
       - 9000:9000
+    networks:
+      cloudflared_network:
 networks:
   cloudflared_network:
+    driver: bridge

@@ -4,5 +4,8 @@ services:
     image: cloudflare/cloudflared:${CLOUDFLARED_IMAGE_TAG:?CLOUDFLARED_IMAGE_TAG is required}
     restart: unless-stopped
     command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TUNNEL_TOKEN:?CLOUDFLARED_TUNNEL_TOKEN is required}
+    networks:
+      cloudflared_network:
 networks:
   cloudflared_network:
+    external: true
