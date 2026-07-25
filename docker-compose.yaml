@@ -1,0 +1,6 @@
+include:
+  - audiobookshelf/docker-compose.yaml
+  - cloudflared/docker-compose.yaml
+networks:
+  cloudflared_network:
+    driver: bridge

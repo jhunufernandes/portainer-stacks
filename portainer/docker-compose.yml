@@ -1,14 +1,13 @@
 services:
   portainer:
     container_name: portainer
-    image: portainer/portainer-ce:lts
+    image: portainer/portainer-ce:${PORTAINER_IMAGE_TAG:?PORTAINER_IMAGE_TAG is required}
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${UPLOAD_LOCATION}:/data
+      - ${PORTAINER_UPLOAD_LOCATION:?PORTAINER_UPLOAD_LOCATION is required}:/data
     ports:
       - 9443:9443
       - 9000:9000
 networks:
-  default:
-    name: cloudflared_network
+  cloudflared_network:
