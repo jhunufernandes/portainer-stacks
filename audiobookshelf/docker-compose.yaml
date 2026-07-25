@@ -3,13 +3,13 @@ services:
     image: ghcr.io/advplyr/audiobookshelf:${AUDIOBOOKSHELF_IMAGE_TAG:?AUDIOBOOKSHELF_IMAGE_TAG is required}
     container_name: audiobookshelf
     restart: unless-stopped
-    ports:
-      - 13378:80
     volumes:
       - ${AUDIOBOOKSHELF_DATA_LOCATION:?AUDIOBOOKSHELF_DATA_LOCATION is required}/config:/config
       - ${AUDIOBOOKSHELF_DATA_LOCATION:?AUDIOBOOKSHELF_DATA_LOCATION is required}/metadata:/metadata
       - ${AUDIOBOOKSHELF_DATA_LOCATION:?AUDIOBOOKSHELF_DATA_LOCATION is required}/audiobooks:/audiobooks
       - ${AUDIOBOOKSHELF_DATA_LOCATION:?AUDIOBOOKSHELF_DATA_LOCATION is required}/podcasts:/podcasts
+    ports:
+      - 13378:80
     environment:
       - TZ=${AUDIOBOOKSHELF_TZ_LOCATION:?AUDIOBOOKSHELF_TZ_LOCATION is required}
     networks:
