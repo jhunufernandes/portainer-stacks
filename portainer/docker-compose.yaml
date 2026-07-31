@@ -6,11 +6,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${PORTAINER_UPLOAD_LOCATION:?PORTAINER_UPLOAD_LOCATION is required}:/data
-    ports:
-      - 9443:9443
-      - 9000:9000
     networks:
-      cloudflared_network:
+      - portainer_network
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 127.0.0.1:9443:9443
 networks:
-  cloudflared_network:
+  portainer_network:
+    name: portainer_network
     driver: bridge

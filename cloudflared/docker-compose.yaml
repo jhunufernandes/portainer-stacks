@@ -5,7 +5,11 @@ services:
     restart: unless-stopped
     command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TUNNEL_TOKEN:?CLOUDFLARED_TUNNEL_TOKEN is required}
     networks:
-      cloudflared_network:
+      - cloudflared_network
+      - portainer_network
 networks:
   cloudflared_network:
+    name: cloudflared_network
+    driver: bridge
+  portainer_network:
     external: true
