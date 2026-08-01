@@ -3,13 +3,24 @@ services:
     container_name: opencode
     image: ghcr.io/anomalyco/opencode:${IMAGE_TAG:?IMAGE_TAG is required}
     restart: unless-stopped
+    command:
+      - serve
     working_dir: /workspace
     environment:
       - TZ=${TZ_LOCATION:?TZ_LOCATION is required}
     volumes:
       - ${DATA_LOCATION:?DATA_LOCATION is required}:/workspace
-    init: true
+    networks:
+      - cloudflared_network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:4096/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     security_opt:
       - no-new-privileges:true
-    stdin_open: true
-    tty: true
+    init: true
+networks:
+  cloudflared_network:
+    external: true
