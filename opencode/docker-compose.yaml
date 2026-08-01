@@ -5,6 +5,10 @@ services:
     restart: unless-stopped
     command:
       - serve
+      - --hostname
+      - 0.0.0.0
+      - --port
+      - "4096"
     working_dir: /workspace
     environment:
       - TZ=${TZ_LOCATION:?TZ_LOCATION is required}
