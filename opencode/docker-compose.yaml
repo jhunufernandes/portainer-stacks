@@ -1,0 +1,15 @@
+services:
+  opencode:
+    container_name: opencode
+    image: ghcr.io/anomalyco/opencode:${IMAGE_TAG:?IMAGE_TAG is required}
+    restart: unless-stopped
+    working_dir: /workspace
+    environment:
+      - TZ=${TZ_LOCATION:?TZ_LOCATION is required}
+    volumes:
+      - ${DATA_LOCATION:?DATA_LOCATION is required}:/workspace
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    stdin_open: true
+    tty: true
