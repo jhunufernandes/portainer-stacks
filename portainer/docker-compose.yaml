@@ -1,17 +1,17 @@
 services:
   portainer:
     container_name: portainer
-    image: portainer/portainer-ce:${PORTAINER_IMAGE_TAG:?PORTAINER_IMAGE_TAG is required}
+    image: portainer/portainer-ce:${IMAGE_TAG:?IMAGE_TAG is required}
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PORTAINER_UPLOAD_LOCATION:?PORTAINER_UPLOAD_LOCATION is required}:/data
+      - ${UPLOAD_LOCATION:?UPLOAD_LOCATION is required}:/data
+    ports:
+      - 127.0.0.1:${PORT:-9443}:9443
     networks:
       - portainer_network
     security_opt:
       - no-new-privileges:true
-    ports:
-      - 127.0.0.1:9443:9443
 networks:
   portainer_network:
     name: portainer_network

@@ -1,19 +1,22 @@
 services:
   audiobookshelf:
-    image: ghcr.io/advplyr/audiobookshelf:${AUDIOBOOKSHELF_IMAGE_TAG:?AUDIOBOOKSHELF_IMAGE_TAG is required}
     container_name: audiobookshelf
+    image: ghcr.io/advplyr/audiobookshelf:${IMAGE_TAG:?IMAGE_TAG is required}
     restart: unless-stopped
-    volumes:
-      - ${AUDIOBOOKSHELF_DATA_LOCATION:?AUDIOBOOKSHELF_DATA_LOCATION is required}/config:/config
-      - ${AUDIOBOOKSHELF_DATA_LOCATION:?AUDIOBOOKSHELF_DATA_LOCATION is required}/metadata:/metadata
-      - ${AUDIOBOOKSHELF_DATA_LOCATION:?AUDIOBOOKSHELF_DATA_LOCATION is required}/audiobooks:/audiobooks
-      - ${AUDIOBOOKSHELF_DATA_LOCATION:?AUDIOBOOKSHELF_DATA_LOCATION is required}/podcasts:/podcasts
-    ports:
-      - 13378:80
     environment:
-      - TZ=${AUDIOBOOKSHELF_TZ_LOCATION:?AUDIOBOOKSHELF_TZ_LOCATION is required}
+      - TZ=${TZ_LOCATION:?TZ_LOCATION is required}
+    volumes:
+      - ${DATA_LOCATION:?DATA_LOCATION is required}/config:/config
+      - ${DATA_LOCATION:?DATA_LOCATION is required}/metadata:/metadata
+      - ${DATA_LOCATION:?DATA_LOCATION is required}/audiobooks:/audiobooks
+      - ${DATA_LOCATION:?DATA_LOCATION is required}/podcasts:/podcasts
+    ports:
+      - ${PORT:-13378}:80
     networks:
+      - audiobookshelf_network
       - cloudflared_network
 networks:
+  audiobookshelf_network:
+    driver: bridge
   cloudflared_network:
     external: true
