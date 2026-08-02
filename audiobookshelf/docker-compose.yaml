@@ -10,8 +10,6 @@ services:
       - ${DATA_LOCATION:?DATA_LOCATION is required}/metadata:/metadata
       - ${DATA_LOCATION:?DATA_LOCATION is required}/audiobooks:/audiobooks
       - ${DATA_LOCATION:?DATA_LOCATION is required}/podcasts:/podcasts
-    ports:
-      - ${PORT:-13378}:80
     networks:
       - audiobookshelf_network
       - cloudflared_network
