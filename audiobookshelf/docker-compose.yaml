@@ -11,10 +11,7 @@ services:
       - ${DATA_LOCATION:?DATA_LOCATION is required}/audiobooks:/audiobooks
       - ${DATA_LOCATION:?DATA_LOCATION is required}/podcasts:/podcasts
     networks:
-      - audiobookshelf_network
       - cloudflared_network
 networks:
-  audiobookshelf_network:
-    driver: bridge
   cloudflared_network:
     external: true
