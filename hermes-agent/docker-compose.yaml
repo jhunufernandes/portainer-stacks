@@ -1,0 +1,18 @@
+services:
+  hermes:
+    image: nousresearch/hermes-agent:${IMAGE_TAG:?IMAGE_TAG is required}
+    container_name: hermes
+    restart: unless-stopped
+    command: gateway run
+    ports:
+      - "${HERMES_PORT_GATEWAY}:8642"
+      - "${HERMES_PORT_DASHBOARD}:9119"
+    volumes:
+      - ${HERMES_VOLUME}
+    environment:
+      - HERMES_DASHBOARD=${HERMES_DASHBOARD}
+    networks:
+      - cloudflared_network
+networks:
+  cloudflared_network:
+    external: true
