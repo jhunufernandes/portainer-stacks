@@ -1,7 +1,7 @@
 services:
   hermes-agent:
     image: nousresearch/hermes-agent:${IMAGE_TAG:?IMAGE_TAG is required}
-    container_name: hermes
+    container_name: hermes-agent
     restart: unless-stopped
     command: gateway run
     volumes:
