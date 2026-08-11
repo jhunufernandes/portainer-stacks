@@ -1,0 +1,16 @@
+services:
+  llama-server:
+    container_name: llama-server
+    image: nginx:${IMAGE_TAG:?IMAGE_TAG is required}
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ_LOCATION:?TZ_LOCATION is required}
+    volumes:
+      - ${DATA_LOCATION:?DATA_LOCATION is required}:/etc/nginx/conf.d:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - cloudflared_network
+networks:
+  cloudflared_network:
+    external: true
