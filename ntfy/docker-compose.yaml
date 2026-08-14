@@ -11,12 +11,8 @@ services:
       - NTFY_BEHIND_PROXY=${BEHIND_PROXY:?BEHIND_PROXY is required}
       - NTFY_AUTH_FILE=${AUTH_FILE:?AUTH_FILE is required}
       - NTFY_AUTH_DEFAULT_ACCESS=${AUTH_DEFAULT_ACCESS:?AUTH_DEFAULT_ACCESS is required}
-      - NTFY_ENABLE_LOGIN=${ENABLE_LOGIN:?ENABLE_LOGIN is required}
-      - NTFY_REQUIRE_LOGIN=${REQUIRE_LOGIN:?REQUIRE_LOGIN is required}
-      - NTFY_ENABLE_SIGNUP=${ENABLE_SIGNUP:?ENABLE_SIGNUP is required}
       - NTFY_AUTH_USERS=${AUTH_USERS:?AUTH_USERS is required}
       - NTFY_AUTH_ACCESS=${AUTH_ACCESS:?AUTH_ACCESS is required}
-      - NTFY_AUTH_TOKENS=${AUTH_TOKENS:?AUTH_TOKENS is required}
     volumes:
       - ${DATA_LOCATION:?DATA_LOCATION is required}/cache:/var/cache/ntfy
       - ${DATA_LOCATION:?DATA_LOCATION is required}/config:/etc/ntfy

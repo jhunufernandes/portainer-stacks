@@ -4,6 +4,7 @@
     "skills/docker-compose-builder/SKILL.md",
     "skills/compose-validate/SKILL.md",
     "skills/env-sync/SKILL.md",
-    "skills/service-readme/SKILL.md"
+    "skills/service-readme/SKILL.md",
+    "code-editor-delegation.md"
   ]
 }
