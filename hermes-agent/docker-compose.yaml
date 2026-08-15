@@ -7,11 +7,14 @@ services:
     volumes:
       - ${HERMES_VOLUME}
     environment:
-      - HERMES_DASHBOARD=${HERMES_DASHBOARD}
+      - HERMES_DASHBOARD=${HERMES_DASHBOARD}:?HERMES_DASHBOARD is required}
       - HERMES_DASHBOARD_BASIC_AUTH_USERNAME=${HERMES_DASHBOARD_BASIC_AUTH_USERNAME:?HERMES_DASHBOARD_BASIC_AUTH_USERNAME is required}
       - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=${HERMES_DASHBOARD_BASIC_AUTH_PASSWORD:?HERMES_DASHBOARD_BASIC_AUTH_PASSWORD is required}
     networks:
       - cloudflared_network
+      - llama_server_network
 networks:
   cloudflared_network:
+    external: true
+  llama_server_network:
     external: true
