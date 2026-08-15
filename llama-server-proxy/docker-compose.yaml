@@ -10,7 +10,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - cloudflared_network
+      - llama_server_network
 networks:
-  cloudflared_network:
-    external: true
+  llama_server_network:
+    name: llama_server_network
+    driver: bridge
