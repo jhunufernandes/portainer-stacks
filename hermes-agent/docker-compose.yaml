@@ -12,9 +12,9 @@ services:
       - HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=${HERMES_DASHBOARD_BASIC_AUTH_PASSWORD:?HERMES_DASHBOARD_BASIC_AUTH_PASSWORD is required}
     networks:
       - cloudflared_network
-      # - llama_server_network
+      - llama_server_network
 networks:
   cloudflared_network:
     external: true
-  # llama_server_network:
-  #   external: true
+  llama_server_network:
+    external: true
